@@ -10,19 +10,19 @@ module.exports = class extends MusicCommand {
 		});
 	}
 
-	async run(msg, [number]) {
+	async run(message, [number]) {
 		if (number <= 0) throw 'Look, I am no expert in maths, but I kinda expected a number equal or bigger than 1...';
 		number--;
 
-		const { music } = msg.guild;
+		const { music } = message.guild;
 		if (music.queue.length < number) throw `I tried getting that song for you, but I only have ${music.queue.length} songs in my deck!`;
 
 		const song = music.queue[number];
-		if (song.requester.id !== msg.author.id)
-			if (!await msg.hasAtLeastPermissionLevel(5)) throw DENIED_SONG_REMOVAL;
+		if (song.requester.id !== message.author.id)
+			if (!await message.hasAtLeastPermissionLevel(5)) throw DENIED_SONG_REMOVAL;
 
 		music.queue.splice(number, 1);
-		return msg.sendMessage(`🗑 Removed the song **${song.title}** requested by **${song.requester}**.`);
+		return message.sendMessage(`🗑 Removed the song **${song.title}** requested by **${song.requester}**.`);
 	}
 
 };

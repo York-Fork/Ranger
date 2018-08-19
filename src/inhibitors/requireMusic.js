@@ -6,14 +6,14 @@ module.exports = class extends Inhibitor {
 		super(...args, { spamProtection: true });
 	}
 
-	async run(msg, cmd) {
+	async run(message, cmd) {
 		if (cmd.requireMusic !== true) return;
 
-		if (msg.channel.type !== 'text') throw 'This command may be only executed in a server.';
+		if (message.channel.type !== 'text') throw 'This command may be only executed in a server.';
 
-		if (!msg.member.voice.channel) throw 'You are not connected in a voice channel.';
-		if (!msg.guild.me.voice.channel) throw 'I am not connected in a voice channel.';
-		if (msg.member.voice.channel !== msg.guild.me.voice.channel) throw 'You must be in the same voice channel as me.';
+		if (!message.member.voice.channel) throw 'You are not connected in a voice channel.';
+		if (!message.guild.me.voice.channel) throw 'I am not connected in a voice channel.';
+		if (message.member.voice.channel !== message.guild.me.voice.channel) throw 'You must be in the same voice channel as me.';
 	}
 
 };

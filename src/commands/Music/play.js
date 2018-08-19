@@ -6,21 +6,21 @@ module.exports = class extends MusicCommand {
 		super(...args, { description: 'Let\'s start the queue!' });
 	}
 
-	async run(msg) {
-		const { music } = msg.guild;
+	async run(message) {
+		const { music } = message.guild;
 
 		if (!music.queue.length)
-			return msg.sendMessage(`Deck's empty my friend, add some songs to the queue with the \`${msg.guild.settings.prefix}add\` command so I can play them.`);
+			return message.sendMessage(`Deck's empty my friend, add some songs to the queue with the \`${message.guild.settings.prefix}add\` command so I can play them.`);
 
-		if (!music.voiceChannel) await this.store.get('join').run(msg);
+		if (!music.voiceChannel) await this.store.get('join').run(message);
 
 		if (music.playing) {
-			return msg.sendMessage('Hey! The disk is already spinning!');
+			return message.sendMessage('Hey! The disk is already spinning!');
 		} else if (music.paused) {
 			music.resume();
-			return msg.sendMessage(`There was a track going on! Playing it back! Now playing: ${music.queue[0].title}!`);
+			return message.sendMessage(`There was a track going on! Playing it back! Now playing: ${music.queue[0].title}!`);
 		} else {
-			music.channel = msg.channel;
+			music.channel = message.channel;
 			return this.play(music);
 		}
 	}

@@ -8,19 +8,19 @@ module.exports = class extends MusicCommand {
 
 	constructor(...args) {
 		super(...args, {
-			description: 'Adds a song the the queue.',
+			description: language => language.get('COMMAND_MUSIC_ADD_DESCRIPTION'),
 			usage: '<url:string>'
 		});
 	}
 
-	async run(msg, [url]) {
+	async run(message, [url]) {
 		const youtubeURL = await this.getURL(url);
-		if (!youtubeURL) throw 'Not found.';
+		if (!youtubeURL) throw message.language.get('COMMAND_MUSIC_ADD_FAILURE');
 
-		const { music } = msg.guild;
-		const song = await music.add(msg.author, youtubeURL);
+		const { music } = message.guild;
+		const song = await music.add(message.author, youtubeURL);
 
-		return msg.sendMessage(`🎵 Added **${song.title}** to the queue 🎶`);
+		return message.sendLocale('COMMAND_MUSIC_ADD_SUCCESS', [song.title]);
 	}
 
 	async getURL(url) {

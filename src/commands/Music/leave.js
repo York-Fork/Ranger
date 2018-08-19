@@ -9,9 +9,9 @@ module.exports = class extends MusicCommand {
 		});
 	}
 
-	async run(msg) {
-		await msg.guild.music.leave();
-		return msg.sendMessage(`Successfully left the voice channel ${msg.guild.me.voice.channel}`);
+	async run(message) {
+		await message.guild.music.leave();
+		return message.sendMessage(`Successfully left the voice channel ${message.guild.me.voice.channel}`);
 	}
 
 };

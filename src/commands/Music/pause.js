@@ -9,12 +9,12 @@ module.exports = class extends MusicCommand {
 		});
 	}
 
-	async run(msg) {
-		const { music } = msg.guild;
+	async run(message) {
+		const { music } = message.guild;
 		if (!music.playing) throw 'I am not playing anything...';
 
 		music.pause();
-		return msg.sendMessage('⏸ Paused');
+		return message.sendMessage('⏸ Paused');
 	}
 
 };

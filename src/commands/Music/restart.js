@@ -9,10 +9,10 @@ module.exports = class extends MusicCommand {
 		});
 	}
 
-	async run(msg) {
-		msg.guild.music.clear();
-		if (msg.guild.me.voice.channel) await msg.guild.me.voice.channel.leave();
-		return msg.sendMessage('Successfully restarted the music module.');
+	async run(message) {
+		message.guild.music.clear();
+		if (message.guild.me.voice.channel) await message.guild.me.voice.channel.leave();
+		return message.sendMessage('Successfully restarted the music module.');
 	}
 
 };

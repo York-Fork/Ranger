@@ -8,15 +8,15 @@ module.exports = class extends MusicCommand {
 		super(...args, { description: 'Get information from the current song.' });
 	}
 
-	async run(msg) {
-		const { remaining, queue, playing } = msg.guild.music;
+	async run(message) {
+		const { remaining, queue, playing } = message.guild.music;
 		if (!playing) throw `Are you speaking to me? Because my deck is empty...`;
 
 		const [song] = queue;
 		const info = await getInfo(song.url);
 		if (!info.author) info.author = {};
 
-		return msg.sendMessage(new MessageEmbed()
+		return message.sendMessage(new MessageEmbed()
 			.setColor(12916736)
 			.setTitle(info.title)
 			.setURL(`https://youtu.be/${info.vid}`)

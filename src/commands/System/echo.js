@@ -12,10 +12,10 @@ module.exports = class extends Command {
 		});
 	}
 
-	async run(msg, [channel = msg.channel, ...content]) {
-		if (msg.deletable) msg.delete().catch(() => null);
+	async run(message, [channel = message.channel, ...content]) {
+		if (message.deletable) message.delete().catch(() => null);
 
-		const attachment = msg.attachments.size > 0 ? msg.attachments.first().url : null;
+		const attachment = message.attachments.size > 0 ? message.attachments.first().url : null;
 		content = content.length ? content.join(' ') : '';
 
 		if (content.length === 0 && !attachment) throw 'I have no content nor attachment to send, please write something.';

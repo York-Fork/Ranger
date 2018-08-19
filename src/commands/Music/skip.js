@@ -10,19 +10,19 @@ module.exports = class extends MusicCommand {
 		});
 	}
 
-	async run(msg, [force]) {
-		const { music } = msg.guild;
+	async run(message, [force]) {
+		const { music } = message.guild;
 
 		if (music.voiceChannel.members.size > 4) {
 			if (force) {
-				if (!await msg.hasAtLeastPermissionLevel(5)) throw 'You can\'t execute this command with the force flag. You must be at least a Moderator Member.';
+				if (!await message.hasAtLeastPermissionLevel(5)) throw 'You can\'t execute this command with the force flag. You must be at least a Moderator Member.';
 			} else {
-				const response = this.handleSkips(music, msg.author.id);
-				if (response) return msg.sendMessage(response);
+				const response = this.handleSkips(music, message.author.id);
+				if (response) return message.sendMessage(response);
 			}
 		}
 
-		await msg.sendMessage(`⏭ Skipped ${music.queue[0].title}`);
+		await message.sendMessage(`⏭ Skipped ${music.queue[0].title}`);
 		music.skip(true);
 		return null;
 	}
