@@ -3,10 +3,10 @@ const MusicManager = require('../structures/MusicManager');
 
 module.exports = Structures.extend('Guild', Guild => {
 	/**
-	 * Sneyra's Extended Guild
+	 * Ranger's Extended Guild
 	 * @extends {Guild}
 	 */
-	class SneyraGuild extends Guild {
+	class RangerGuild extends Guild {
 
 		/**
 		 * @param {...*} args Normal D.JS Guild args
@@ -24,5 +24,5 @@ module.exports = Structures.extend('Guild', Guild => {
 
 	}
 
-	return SneyraGuild;
+	return RangerGuild;
 });

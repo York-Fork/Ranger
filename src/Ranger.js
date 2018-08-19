@@ -2,7 +2,7 @@ const { Client } = require('klasa');
 const config = require('../config.js');
 
 // Load custom structures
-require('./lib/extensions/SneyraGuild');
+require('./lib/extensions/RangerGuild');
 
 // Modify the permission levels
 Client.defaultPermissionLevels
@@ -18,15 +18,12 @@ new Client({
 		'TYPING_START',
 		'CHANNEL_PINS_UPDATE',
 		'PRESENCE_UPDATE',
-		'USER_UPDATE',
-		'MESSAGE_REACTION_ADD',
-		'MESSAGE_REACTION_REMOVE',
-		'MESSAGE_REACTION_REMOVE_ALL'
+		'USER_UPDATE'
 	],
 	commandEditing: true,
 	console: { useColor: true, utc: true },
 	pieceDefaults: { commands: { deletable: true, promptLimit: 5, quotedStringSupport: true } },
-	prefix: 'm!',
-	presence: { activity: { name: 'Sneyra, help', type: 'LISTENING' } },
-	regexPrefix: /^(hey )?sneyra(,|!)/i
+	prefix: 'r.',
+	presence: { activity: { name: 'Ranger, help', type: 'LISTENING' } },
+	regexPrefix: /^(hey )?ranger(,|!)/i
 }).login(config.token);

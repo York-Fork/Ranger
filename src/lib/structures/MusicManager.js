@@ -18,15 +18,15 @@ class MusicManager {
 		/**
 		 * The Client that manages this instance
 		 * @since 1.0.0
-		 * @type {Sneyra}
+		 * @type {Ranger}
 		 * @name MusicManager#client
 		 */
 		Object.defineProperty(this, 'client', { value: guild.client });
 
 		/**
-		 * The SneyraGuild instance that manages this instance
+		 * The RangerGuild instance that manages this instance
 		 * @since 1.0.0
-		 * @type {SneyraGuild}
+		 * @type {RangerGuild}
 		 * @name MusicManager#guild
 		 */
 		Object.defineProperty(this, 'guild', { value: guild });
@@ -85,7 +85,7 @@ class MusicManager {
 	}
 
 	/**
-	 * The VoiceChannel Sneyra is connected to
+	 * The VoiceChannel Ranger is connected to
 	 * @since 1.0.0
 	 * @type {?VoiceChannel}
 	 * @readonly
@@ -117,7 +117,7 @@ class MusicManager {
 	}
 
 	/**
-	 * Whether Sneyra is playing a song or not
+	 * Whether Ranger is playing a song or not
 	 * @since 2.0.0
 	 * @type {boolean}
 	 * @readonly
@@ -127,7 +127,7 @@ class MusicManager {
 	}
 
 	/**
-	 * Whether Sneyra has the queue paused or not
+	 * Whether Ranger has the queue paused or not
 	 * @since 2.0.0
 	 * @type {?boolean}
 	 * @readonly
@@ -138,7 +138,7 @@ class MusicManager {
 	}
 
 	/**
-	 * Whether Sneyra is doing nothing
+	 * Whether Ranger is doing nothing
 	 * @since 2.0.0
 	 * @type {boolean}
 	 * @readonly

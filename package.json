@@ -1,8 +1,8 @@
 {
-  "name": "sneyra",
+  "name": "ranger",
   "version": "2.0.1",
   "description": "Extension of Skyra - Music-only bot.",
-  "main": "src/Sneyra.js",
+  "main": "src/Ranger.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
