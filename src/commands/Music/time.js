@@ -9,7 +9,7 @@ module.exports = class extends MusicCommand {
 	async run(message) {
 		const { playing, remaining } = message.guild.music;
 		if (!playing) throw message.language.get('COMMAND_MUSIC_TIME_FAILURE');
-		return message.sendLocale('COMMAND_MUSIC_TIME_SUCCESS', showSeconds(remaining));
+		return message.sendLocale('COMMAND_MUSIC_TIME_SUCCESS', [showSeconds(remaining)]);
 	}
 
 };

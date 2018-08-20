@@ -5,7 +5,7 @@ module.exports = class extends MusicCommand {
 	constructor(...args) {
 		super(...args, {
 			usage: '[force]',
-			description: 'Skip the current song.',
+			description: language => language.get('COMMAND_MUSIC_SKIP_DESCRIPTION'),
 			requireMusic: true
 		});
 	}
@@ -15,29 +15,29 @@ module.exports = class extends MusicCommand {
 
 		if (music.voiceChannel.members.size > 4) {
 			if (force) {
-				if (!await message.hasAtLeastPermissionLevel(5)) throw 'You can\'t execute this command with the force flag. You must be at least a Moderator Member.';
+				if (!await message.hasAtLeastPermissionLevel(5)) throw message.language.get('COMMAND_MUSIC_SKIP_FAILURE');
 			} else {
-				const response = this.handleSkips(music, message.author.id);
+				const response = this.handleSkips(music, message.author.id, message.language);
 				if (response) return message.sendMessage(response);
 			}
 		}
 
-		await message.sendMessage(`⏭ Skipped ${music.queue[0].title}`);
+		await message.sendLocale('COMMAND_MUSIC_SKIP_SUCCESS', [music.queue[0].title]);
 		music.skip(true);
 		return null;
 	}
 
-	handleSkips(musicInterface, user) {
+	handleSkips(musicInterface, user, language) {
 		if (!musicInterface.queue[0].skips) musicInterface.queue[0].skips = new Set();
-		if (musicInterface.queue[0].skips.has(user)) return 'You have already voted to skip this song.';
+		if (musicInterface.queue[0].skips.has(user)) return language.get('COMMAND_MUSIC_SKIP_VOTED');
 		musicInterface.queue[0].skips.add(user);
 		const members = musicInterface.voiceChannel.members.size - 1;
-		return this.shouldInhibit(members, musicInterface.queue[0].skips.size);
+		return this.shouldInhibit(members, musicInterface.queue[0].skips.size, language);
 	}
 
-	shouldInhibit(total, size) {
+	shouldInhibit(total, size, language) {
 		if (total <= 3) return true;
-		return size >= total * 0.4 ? false : `🔸 | Votes: ${size} of ${Math.ceil(total * 0.4)}`;
+		return size >= total * 0.4 ? false : language.get('COMMAND_MUSIC_SKIP_VOTES', size, total);
 	}
 
 };

@@ -140,6 +140,7 @@ module.exports = class extends Language {
 			SYSTEM_CHANNEL_NOT_POSTABLE: 'I am not allowed to send messages to this channel.',
 			COMMAND_SUCCESS: 'Successfully executed the command.',
 			DEAR: 'Commander',
+
 			// Music Commands
 			COMMAND_MUSIC_ADD_DESCRIPTION: `Adds a song the the queue.`,
 			COMMAND_MUSIC_ADD_SUCCESS: (title) => `🎵 Added **${title}** to the queue 🎶`,
@@ -154,9 +155,8 @@ module.exports = class extends Language {
 				'played recently. This allows two things:\n- 1: Play music unlimitedly without playing the same song twice.\n- 2:',
 				'Find new songs from YouTube.'
 			].join(' '),
-			COMMAND_MUSIC_AUTOPLAY_STATUS: (enabled) => enabled
-				? `Sure thing! I'll keep playing decks until you get bored!`
-				: `I stopped auto-playing songs, just make sure to give me some songs later!`,
+			COMMAND_MUSIC_AUTOPLAY_ENABLED: 'Sure thing! I\'ll keep playing decks until you get bored!',
+			COMMAND_MUSIC_AUTOPLAY_DISABLED: 'I stopped auto-playing songs, just make sure to give me some songs later!',
 
 			COMMAND_MUSIC_JOIN_DESCRIPTION: 'Joins the message author\'s voice channel.',
 			COMMAND_MUSIC_JOIN_SUCCESS: (vChannel) => `Successfully joined the voice channel ${vChannel}`,
@@ -198,11 +198,19 @@ module.exports = class extends Language {
 
 			COMMAND_MUSIC_REMOVE: '',
 
-			COMMAND_MUSIC_RESTART: '',
+			COMMAND_MUSIC_RESTART_DESCRIPTION: 'Clears the music handler.',
+			COMMAND_MUSIC_RESTART_SUCCESS: 'Successfully restarted the music module.',
 
-			COMMAND_MUSIC_RESUME: '',
+			COMMAND_MUSIC_RESUME_DESCRIPTION: 'Resumes the current song.',
+			COMMAND_MUSIC_RESUME_SUCCESS: '▶ Resumed',
+			COMMAND_MUSIC_RESUME_IDLE: 'My deck is empty! Give me a disk first so I can lift the spirits in this room!',
+			COMMAND_MUSIC_RESUME_PLAYING: 'Is this song too silent, my friend? Because it is indeed... playing.',
 
-			COMMAND_MUSIC_SKIP: '',
+			COMMAND_MUSIC_SKIP_DESCRIPTION: 'Skip the current song.',
+			COMMAND_MUSIC_SKIP_SUCCESS: (title) => `⏭ Skipped ${title}`,
+			COMMAND_MUSIC_SKIP_FAILURE: 'You can\'t execute this command with the force flag. You must be at least a Moderator Member.',
+			COMMAND_MUSIC_SKIP_VOTED: 'You have already voted to skip this song.',
+			COMMAND_MUSIC_SKIP_VOTES: (total, size) => `🔸 | Votes: ${size} of ${Math.ceil(total * 0.4)}`,
 
 			COMMAND_MUSIC_TIME_DESCRIPTION: 'Check how much time is left for the song to end.',
 			COMMAND_MUSIC_TIME_SUCCESS: (remaining) => `🕰 Time remaining: ${remaining}`,

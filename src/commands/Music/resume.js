@@ -4,17 +4,17 @@ module.exports = class extends MusicCommand {
 
 	constructor(...args) {
 		super(...args, {
-			description: 'Resumes the current song.',
+			description: language => language.get('COMMAND_MUSIC_RESUME_DESCRIPTION'),
 			requireMusic: true
 		});
 	}
 
 	async run(message) {
-		if (message.guild.music.idling) throw 'My deck is empty! Give me a disk first so I can lift the spirits in this room!';
-		if (message.guild.music.playing) throw 'Is this song too silent, my friend? Because it is indeed... playing.';
+		if (message.guild.music.idling) throw message.language.get('COMMAND_MUSIC_RESUME_IDLE');
+		if (message.guild.music.playing) throw message.language.get('COMMAND_MUSIC_RESUME_PLAYING');
 
 		message.guild.music.resume();
-		return message.sendMessage('▶ Resumed');
+		return message.sendLocale('COMMAND_MUSIC_RESUME_SUCCESS');
 	}
 
 };
