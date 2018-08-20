@@ -4,14 +4,14 @@ module.exports = class extends MusicCommand {
 
 	constructor(...args) {
 		super(...args, {
-			description: 'Leaves the voice channel.',
+			description: language => language.get('COMMAND_MUSIC_LEAVE_DESCRIPTION'),
 			requireMusic: true
 		});
 	}
 
 	async run(message) {
 		await message.guild.music.leave();
-		return message.sendMessage(`Successfully left the voice channel ${message.guild.me.voice.channel}`);
+		return message.sendLocale('COMMAND_MUSIC_LEAVE', [message.guild.me.voice.channel]);
 	}
 
 };

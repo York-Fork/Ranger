@@ -4,7 +4,7 @@ module.exports = class extends MusicCommand {
 
 	constructor(...args) {
 		super(...args, {
-			description: 'Toggle the autoplayer.',
+			description: language => language.get('COMMAND_MUSIC_AUTOPLAY_DESCRIPTION'),
 			extendedHelp: language => language.get('COMMAND_MUSIC_AUTOPLAY_EXTENDEDHELP'),
 			requireMusic: true
 		});

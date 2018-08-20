@@ -4,7 +4,7 @@ module.exports = class extends MusicCommand {
 
 	constructor(...args) {
 		super(...args, {
-			description: 'Prune the queue list.',
+			description: language => language.get('COMMAND_MUSIC_PRUNE_DESCRIPTION'),
 			requireMusic: true
 		});
 	}
@@ -13,10 +13,10 @@ module.exports = class extends MusicCommand {
 		const { music } = message.guild;
 
 		if (music.voiceChannel.members.size > 4)
-			if (!await message.hasAtLeastPermissionLevel(5)) throw 'You can\'t execute this command when there are over 4 members. You must be at least a Dj Member.';
+			if (!await message.hasAtLeastPermissionLevel(5)) throw message.language.get('COMMAND_MUSIC_PRUNE_FAILURE');
 
 		music.prune();
-		return message.sendMessage(`🗑 Pruned ${music.queue.length}`);
+		return message.sendLocale('COMMAND_MUSIC_PRUNE_SUCCESS', [music.queue.length]);
 	}
 
 };

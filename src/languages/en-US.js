@@ -145,7 +145,7 @@ module.exports = class extends Language {
 			COMMAND_MUSIC_ADD_SUCCESS: (title) => `🎵 Added **${title}** to the queue 🎶`,
 			COMMAND_MUSIC_ADD_FAILURE: 'Not found.',
 
-			COMMAND_MUSIC_AUTOPLAY: '',
+			COMMAND_MUSIC_AUTOPLAY_DESCRIPTION: 'Toggle the autoplayer.',
 			COMMAND_MUSIC_AUTOPLAY_EXTENDEDHELP: [
 				'NOTE! This command does not make Ranger play a song from the nowhere, it tells her whether to play the first',
 				'non-duplicated (in a range of 10 songs) song from the related videos she has fetched in the latest added song.',
@@ -158,17 +158,41 @@ module.exports = class extends Language {
 				? `Sure thing! I'll keep playing decks until you get bored!`
 				: `I stopped auto-playing songs, just make sure to give me some songs later!`,
 
-			COMMAND_MUSIC_JOIN: '',
+			COMMAND_MUSIC_JOIN_DESCRIPTION: 'Joins the message author\'s voice channel.',
+			COMMAND_MUSIC_JOIN_SUCCESS: (vChannel) => `Successfully joined the voice channel ${vChannel}`,
+			COMMAND_MUSIC_JOIN_FAILURE_NOINFO: 'I am sorry, but Discord did not tell me the information I need, so I do not know what voice channel are you connected to...',
+			COMMAND_MUSIC_JOIN_FAILURE_NOVOICE: 'You are not connected in a voice channel.',
+			COMMAND_MUSIC_JOIN_FAILURE_SAMECHANNEL: 'Turn on your volume! I am playing music there!',
+			COMMAND_MUSIC_JOIN_FAILURE_ALREADYPLAYING: 'I am sorry, but I am playing music in another channel, perhaps try later or ask nicely to the people who came first to join them!',
+			COMMAND_MUSIC_JOIN_FAILURE_FULL: 'I cannot join your voice channel, it\'s full... kick somebody with the boot or make room for me!',
+			COMMAND_MUSIC_JOIN_FAILURE_CONNECT: 'I do not have enough permissions to connect to your voice channel. I am missing the CONNECT permission.',
+			COMMAND_MUSIC_JOIN_FAILURE_SPEAK: 'I can connect... but not speak. Please turn on this permission so I can emit music.',
 
-			COMMAND_MUSIC_LEAVE: '',
+			COMMAND_MUSIC_LEAVE_DESCRIPTION: 'Leaves the voice channel.',
+			COMMAND_MUSIC_LEAVE: (vChannel) => `Successfully left the voice channel ${vChannel}`,
 
-			COMMAND_MUSIC_PAUSE: '',
+			COMMAND_MUSIC_PAUSE_DESCRIPTION: 'Pauses the current song.',
+			COMMAND_MUSIC_PAUSE_SUCCESS: '⏸ Paused',
+			COMMAND_MUSIC_PAUSE_FAILURE: 'I am not playing anything...',
 
-			COMMAND_MUSIC_PLAY: '',
+			COMMAND_MUSIC_PLAY_DESCRIPTION: 'Let\'s start the queue!',
+			COMMAND_MUSIC_PLAY_SUCCESS: (title, requester) => `🎧 Playing: **${title}** as requested by: **${requester}**`,
+			COMMAND_MUSIC_PLAY_EMPTY: (prefix) => `Deck's empty my friend, add some songs to the queue with the \`${prefix}add\` command so I can play them.`,
+			COMMAND_MUSIC_PLAY_ALREADYPLAYING: 'Hey! The disk is already spinning!',
+			COMMAND_MUSIC_PLAY_RESUME: (title) => `There was a track going on! Playing it back! Now playing: ${title}!`,
+			COMMAND_MUSIC_PLAY_FAILURE_BROKEN: 'Whoops! This disk broke!',
+			COMMAND_MUSIC_PLAY_RATE_AUDIO: '⏹ From 1 to 10, being 1 the worst score and 10 the best, how would you rate the session? It just ended!',
+			COMMAND_MUSIC_PLAY_AUTO: 'YouTube AutoPlay',
 
-			COMMAND_MUSIC_PLAYING: '',
+			COMMAND_MUSIC_PLAYING_DESCRIPTION: 'Get information from the current song.',
+			COMMAND_MUSIC_PLAYING_FAILURE: 'Are you speaking to me? Because my deck is empty...',
+			COMMAND_MUSIC_PLAYING_UNKNOWN: 'Unknown',
+			COMMAND_MUSIC_PLAYING_DURATION: (duration, remaining) => `**Duration**: ${duration} [Time remaining: ${remaining}]`,
+			COMMAND_MUSIC_PLAYING_DESC: (description) => `**Description**: ${description}`,
 
-			COMMAND_MUSIC_PRUNE: '',
+			COMMAND_MUSIC_PRUNE_DESCRIPTION: 'Prune the queue list.',
+			COMMAND_MUSIC_PRUNE_FAILURE: 'You can\'t execute this command when there are over 4 members. You must be at least a Dj Member.',
+			COMMAND_MUSIC_PRUNE_SUCCESS: (tracks) => `🗑 Pruned ${tracks}`,
 
 			COMMAND_MUSIC_QUEUE: '',
 

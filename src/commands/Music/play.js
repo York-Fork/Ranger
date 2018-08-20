@@ -3,22 +3,22 @@ const { MusicCommand, klasaUtil: { sleep } } = require('../../index');
 module.exports = class extends MusicCommand {
 
 	constructor(...args) {
-		super(...args, { description: 'Let\'s start the queue!' });
+		super(...args, { description: language => language.get('COMMAND_MUSIC_PLAY_DESCRIPTION') });
 	}
 
 	async run(message) {
 		const { music } = message.guild;
 
 		if (!music.queue.length)
-			return message.sendMessage(`Deck's empty my friend, add some songs to the queue with the \`${message.guild.settings.prefix}add\` command so I can play them.`);
+			return message.sendLocale('COMMAND_MUSIC_PLAY_EMPTY', [message.guild.settings.prefix]);
 
 		if (!music.voiceChannel) await this.store.get('join').run(message);
 
 		if (music.playing) {
-			return message.sendMessage('Hey! The disk is already spinning!');
+			return message.sendLocale('COMMAND_MUSIC_PLAY_ALREADYPLAYING');
 		} else if (music.paused) {
 			music.resume();
-			return message.sendMessage(`There was a track going on! Playing it back! Now playing: ${music.queue[0].title}!`);
+			return message.sendLocale('COMMAND_MUSIC_PLAY_RESUME', [music.queue[0].title]);
 		} else {
 			music.channel = message.channel;
 			return this.play(music);
@@ -28,7 +28,7 @@ module.exports = class extends MusicCommand {
 	async play(music) {
 		while (music.queue.length) {
 			const [song] = music.queue;
-			await music.channel.send(`🎧 Playing: **${song.title}** as requested by: **${song.requester}**`);
+			await music.channel.sendLocale('COMMAND_MUSIC_PLAY_SUCCESS', [song.title, song.requester]);
 			await sleep(300);
 
 			try {
@@ -39,7 +39,7 @@ module.exports = class extends MusicCommand {
 							resolve(true);
 						})
 						.on('error', (err) => {
-							music.channel.send('Whoops! This disk broke!');
+							music.channel.sendLocale('COMMAND_MUSIC_PLAY_FAILURE_BROKEN');
 							music.client.emit('error', err);
 							music.skip();
 							resolve(true);
@@ -60,13 +60,13 @@ module.exports = class extends MusicCommand {
 		}
 
 		if (!music.queue.length) {
-			music.channel.send('⏹ From 1 to 10, being 1 the worst score and 10 the best, how would you rate the session? It just ended!')
+			music.channel.sendLocale('COMMAND_MUSIC_PLAY_RATE_AUDIO')
 				.then(() => music.leave());
 		}
 	}
 
-	autoPlayer(music) {
-		return music.add('YouTube AutoPlay', music.next);
+	autoPlayer(music, language) {
+		return music.add(language.get('COMMAND_MUSIC_PLAY_AUTO'), music.next);
 	}
 
 };
