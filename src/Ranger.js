@@ -11,6 +11,11 @@ Client.defaultPermissionLevels
 		&& ((message.guild.settings.administrator && message.member.roles.has(message.guild.settings.administrator))
             || message.member.permissions.has('MANAGE_GUILD')), { fetch: true });
 
+// Add new guild schemas
+Client.defaultGuildSchema
+	.add('dj', 'Role', { configurable: true, default: null })
+	.add('administrator', 'Role', { configurable: true, default: null });
+
 new Client({
 	disabledEvents: [
 		'GUILD_BAN_ADD',
