@@ -196,7 +196,14 @@ module.exports = class extends Language {
 
 			COMMAND_MUSIC_QUEUE: '',
 
-			COMMAND_MUSIC_REMOVE: '',
+			COMMAND_MUSIC_REMOVE_DESCRIPTION: 'Remove a song from the queue list.',
+			COMMAND_MUSIC_REMOVE_BAD_MATH: 'Look, I am no expert in maths, but I kinda expected a number equal or bigger than 1...',
+			COMMAND_MUSIC_REMOVE_NOT_ENOUGH: (amount) => `I tried getting that song for you, but I only have ${amount} songs in my deck!`,
+			COMMAND_MUSIC_REMOVE_SUCCESS: (title, requester) => `🗑 Removed the song **${title}** requested by **${requester}**.`,
+			COMMAND_MUSIC_REMOVE_GET_DJ: [
+				'I find it a bit rude to remove somebody else\'s songs from the list... Talk with them kindly, or',
+				'shout at a DJ if there is one in this guild, if it ruins the party, then they may consider to remove it!'
+			].join(' '),
 
 			COMMAND_MUSIC_RESTART_DESCRIPTION: 'Clears the music handler.',
 			COMMAND_MUSIC_RESTART_SUCCESS: 'Successfully restarted the music module.',
@@ -214,9 +221,8 @@ module.exports = class extends Language {
 
 			COMMAND_MUSIC_TIME_DESCRIPTION: 'Check how much time is left for the song to end.',
 			COMMAND_MUSIC_TIME_SUCCESS: (remaining) => `🕰 Time remaining: ${remaining}`,
-			COMMAND_MUSIC_TIME_FAILURE: 'Are you speaking to me? Because my deck is empty...',
+			COMMAND_MUSIC_TIME_FAILURE: 'Are you speaking to me? Because my deck is empty...'
 
-			COMMAND_MUSIC_VOLUME: ''
 		};
 	}
 
